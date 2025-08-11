@@ -36,11 +36,25 @@ class BST:
             print(node.val,end=" ")
             self.inorder(node.right)
 
+    def  search_bst(self,node,val):
+        if not node or node.val == val:
+            return node
+        if node.val > val:
+            return self.search_bst(node.left,val)
+        else:
+            return self.search_bst(node.right,val)
+
 nums = [30,60,70,40,10,46]
 mytree = BST()
 
 for i in nums:
     mytree.insert(i)
 
+print("Inorder Traversal:", end=" ")
 mytree.inorder(mytree.root)
 
+result = mytree.search_bst(mytree.root, 100)
+if result:
+    print("\nFound:", result.val)
+else:
+    print("\nNot found")
